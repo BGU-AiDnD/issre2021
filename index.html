@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+	<ul id="menu">
+		<li><a href="#about">About Me</a></li>
+		<li><a href="#photos">My Photos</a></li>
+		<li><a href="#playlist">My Playlist</a></li>
+		<li><a href="#like">Like</a></li>
+		<li><a href="#qrcoder">QR code</a></li>
+		<li><a href="#spa">Q&A</a></li>
+		<li><a href="#contact">Contact Me</a></li>
+	</ul>
+	<section id="about" class="section">
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<h>about me</h>
+		<p id ="aboutMeP">
+			My name is Amit Sultan, I'm 25 years old born and raised in Israel.
+			<br>
+			I'm a third year ISE student, I spend my free time playing the guitar, gaming, and binge-watching TV shows.
+			<br>
+			My favorite interests to study are mostly AI related, DeepMind will be the perfect example!
+			<br>
+			their agent started from scratch and climbed up to the top of the leaderboard and surpass even the world champions.
+			<br>
+			This semester I'm taking the "Research Skills" without too much digging my assignment is to create a website
+			<br>
+			to allow data sharing, so I hope this course will give me the tools I need to make it happen!.
+		</p>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</section>
+	<section id="photos" class="section">
+		my photos
+		<div class="slideshow-container">
+			<link rel="stylesheet" type="text/css" href="slideStyle.css"/>
+			<div class="mySlides fade">
+				<div class="numbertext">1 / 5</div>
+				<img src="resources/pictures/pic1.jpg" style="width:100%">
+				<div class="text">Me & Dad</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="numbertext">2 / 5</div>
+				<img src="resources/pictures/pic2.jpg" style="width:100%">
+				<div class="text">#StudentLife</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="numbertext">3 / 5</div>
+				<img src="resources/pictures/pic3.jfif" style="width:100%">
+				<div class="text">Before saturday ride</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="numbertext">4 / 5</div>
+				<img src="resources/pictures/pic4.jfif" style="width:100%">
+				<div class="text">Cute Doggo sleep</div>
+			</div>
+			<div class="mySlides fade">
+				<div class="numbertext">5 / 5</div>
+				<img src="resources/pictures/pic5.jfif" style="width:100%">
+				<div class="text">Cute Doggo smile</div>
+			</div>                                    
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<br>
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span> 
+			<span class="dot" onclick="currentSlide(2)"></span> 
+			<span class="dot" onclick="currentSlide(3)"></span> 
+			<span class="dot" onclick="currentSlide(4)"></span> 
+			<span class="dot" onclick="currentSlide(5)"></span> 
+			<script src="js/app.js"></script>
+		</div>
+	</section>
+	<section id="playlist" class="section">
+		<br/>
+		my playlist
+		<br/>
+		<br/>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLY4Z055L22k6n7hjyQwSW5EEKGKYUSAr3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		<br/>
+	</section>
+	<section id="like" class="section">
+		<br/>
+		<br/>
+		give me a like
+		<br/>
+		<br/>
+		<div class="fb-like" data-href="https://sise-web-development-environments.github.io/205975444/" data-width="500" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
+		<br/>
+	</section>
+	<section id="qrcoder" class="section">
+		<br/>
+		scan my code
+		<br/>
+		<img src="resources/pictures/QR.png" style="width: 10%; height: 10%;" />
+		<br/>
+		<br/>
+		<br/>
+	</section>
+	<section id="spa" class="section">
+		ans
+		<br/>
+		<br/>
+		<h>What is the diffrence between web 1.0/2.0/3.0?</h>
+		<br/>
+		<p class ="ans">
+			-Web 1.0: Is the first generation of web and was mainly about spreading and sharing information.
+			<br/>
+			&nbsp;&nbsp; Web 1.0 was mainly read-only web and had little to no interaction with the clients.
+			<br/>
+			<br/>
+			-Web 2.0: Unlike the first generation the 2.0 web was a read-write web,giving the option 
+			<br/>
+			&nbsp;&nbsp;to exchange information with the client thus enable more complex networking such as
+			<br/>
+			&nbsp;&nbsp; social media such as facebook or myspace.
+			<br/>
+			<br/>
+			-Web 3.0: Also known as the semantic web, web 3.0 unlike the previous versions uses 
+			<br/>
+			&nbsp;&nbsp; semantics such as interpeting of queries or preforming computations 
+			<br/>
+			&nbsp;&nbsp; to find the best products for you in shopping site (like Amazon recommendation).
+			<br/>
+			<br/>
+			<br/>
+			<h>Use case that shows the diffrences between web 1.0 to web 3.0</h>
+			<br/>
+			<br/>
+			Lets take the example of "searching for a product online"
+			<br/>
+			&nbsp;&nbsp; Web 1.0 we need to search for the specific product if we want to find any information about it,unlike
+			<br/>
+			&nbsp;&nbsp; Web 2.0 we have the option of searching the product at social media.
+			<br/>
+			&nbsp;&nbsp; web 3.0 where we can give a description or some of the product name and the rest is done with semantics.
+		</p>
+	</section>
+	<section id="contact" class="section">
+		<br/>
+		contact me
+		<br/>
+		<br/>
+		<div class="container">
+			<form action="mailto:amitsul@post.bgu.ac.il?subject=subject&body=body"  method="get" enctype="text/plain">
+
+				<label for="email">Email</label>
+				<input type="text" id="email" name="email" placeholder="Your email here..">
+
+				<label for="subject">Subject</label>
+				<input type="text" id="subject" name="subject" placeholder="Subject here..">
+
+				<label for="Body">Body</label>
+				<textarea type="text" id="body" name="body" placeholder="body here.." rows="4" cols="50"></textarea>
+
+				<div style="padding-bottom: 10px">
+					<input type="button" class ="emoji" value="&#128532;" onclick="addToBody('&#128532')">
+					<input type="button" class ="emoji" value="&#128530;" onclick="addToBody('&#128530')">
+					<input type="button" class ="emoji" value="&#128529;" onclick="addToBody('&#128529')">
+					<input type="button" class ="emoji" value="&#128513;" onclick="addToBody('&#128513')">
+					<input type="button" class ="emoji" value="&#128525;" onclick="addToBody('&#128525')">
+					<script>
+						function addToBody(type){
+							var body = document.getElementById("body");
+							body.value += type;
+						}
+					</script>
+				</div>     
+				<input type="submit" class ="hvr-buzz" value="Submit">
+			</form>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+	</section>
+	<script type="text/javascript">
+		$(function(){
+			$("#nav a").click(function(e){
+				e.preventDefault();
+				$('html,body').scrollTo(this.hash,this.hash); 
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).scroll(function() {
+			$('#menu').toggle($(this).scrollTop()>1000)
+		});​
+	</script>
+</body>
+</html>
