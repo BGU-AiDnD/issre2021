@@ -1,0 +1,30 @@
+extends default
+
+
+block content
+	link(href='css/style.css' rel='stylesheet')
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js").
+	script.
+		$(document).ready(function(){
+			$('#beirut').addClass('active');
+		});
+	div
+		p.firstP This is beirut dataset page
+
+		p Software Defect Prediction is an important activity used in the Testing Phase of the software development life cycle.
+		p Within the research of new defect prediction approaches and the selection of training sets for the classification task, different benchmarks have been analyzed in the literature.
+		p They provide several features and defective information over specific software archives. 
+		p Therefore, they are commonly used in research to evaluate new approaches.
+		p However, the current benchmarks contain several limitations, such as lack of project variability, outdated benchmarks, single-version projects, a small number of projects and metrics, unavailable resources, poor usability, and non-extensible tools.
+		p Therefore, we introduce a novel tool
+		p Bgu rEpository mIning foR bUg predicTion
+		p for benchmark generation for defect prediction, composed of three main features:
+		p Given an open-source repository from GitHub, \TOOL mines the software repository by (1) selecting the best k versions, based on the defective rate of each version, (2) generating training sets and a testing set for defect prediction, composed of a large number of metrics and defective information extracted from each of the selected versions and (3) creating defect prediction models from those extracted metrics.
+		p In the end, \TOOL extracts a diversified catalog of \NUMMETRICS metrics and the defective information from each component of k versions, automatically selected based on the rate of defects in each version.
+		p They were collected from \NUMPROJECTS different projects, ranging from \TIMERANGE.
+		p The tool is also supplemented with an easy to use web interface
+		p that provides a configurable selection of projects and metrics and an interface to manage the defect prediction tasks.
+		p Moreover, this tool is adapted to be extended with new projects and new extractors, introducing new metrics to the benchmark.
+
+		p.firstP
+		p.firstP

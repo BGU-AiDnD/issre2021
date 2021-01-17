@@ -1,0 +1,27 @@
+extends home
+
+
+block login
+		meta(charset="utf-8")
+		title Login Form
+		link(rel='stylesheet' type='text/css' href='css/login.css')
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js").
+		script.
+			$(document).ready(function(){
+				$('#login').addClass('active');
+			});
+		div.login-form
+			h1 Login
+			form(action="controllers/authenticate-controller" method="POST")
+				if message && message.length
+					error #{message}
+				input(type="text" name="username" placeholder="Username" required)
+				input(type="password" name="password" placeholder="Password" required)
+				div.container(style="")
+					input(type="submit")
+					.divider
+					input(type="button" value="Register" onclick="moveToRegister()")
+					script.
+						function moveToRegister(){
+							window.location.href = 'register'
+						}

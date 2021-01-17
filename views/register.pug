@@ -1,0 +1,35 @@
+extends home
+
+
+block register
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js").
+		link(rel='stylesheet' type='text/css' href='css/register.css')
+		script.
+			$(document).ready(function(){
+				$('#register').addClass('active');
+			});
+		div.register-form
+			h1 Register
+			if message && message.length
+				error #{message}
+			form(action="controllers/register-controller" method="POST")
+				label(id ='username' for='username' class='popup') Username:
+					span(class="popuptext" id="userDetails") username must be of minimum 6 characters and only alphanumeric 
+				input#register-form-username(type='text', placeholder='Username' name='username' required)
+				
+				label(id='email' for='email' class='popup') Email:
+					span(class="popuptext" id="emailDetails") email must be a valid email
+				input#register-form-email(type='text', placeholder='Email' name='email' required)
+				
+				label(id ='password' for='password' class='popup') Password:
+					span(class="popuptext" id="passwordDetails") password must contain letters and numbers and be 8-16 characters
+				input#register-form-password(type='password', placeholder='Password' name='password' required)
+				div.container(style="")
+					input(type="submit")
+					.divider
+					input(type="button" value="Back" onclick="moveToHome()")
+					script.
+						function moveToHome(){
+							window.location.href = ''
+						}
+					

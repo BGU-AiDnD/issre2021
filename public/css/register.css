@@ -1,0 +1,100 @@
+		.register-form {
+			width: 350px;
+			margin: 0 auto;
+			background-color:  #c1d1f0;
+			border-radius: 5px;
+			padding: 8px;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.register-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		.register-form input[type="password"],
+		.register-form input[type="text"] {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #dddddd;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+		.register-form input[type="button"],
+		.register-form input[type="submit"] {
+			width: 49%;
+			padding: 15px;
+			margin-top: 5px;
+			background-color: #535b63;
+			border: 0;
+			border-radius: 20px;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		.register-form error{
+			position: relative;
+			bottom: 5px;
+			font-size: 14px;
+			color: red;
+		}
+		.register-form userCriteria{
+			font-size: 13px;
+			display: none;
+		}
+		.register-form label#username:hover + userCriteria{
+			display: over;
+		}
+
+
+		.register-form .popup {
+			position: relative;
+			display: inline-block;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		/* The actual popup */
+		.register-form .popup .popuptext {
+			font-size: 14px;
+			width: 160px;
+			display: none;
+			opacity: 0.9;
+			background-color: #c1d1f0;
+			border-color: black;
+			border-style: solid;
+			border-width: thin;
+			border-radius: 6px;
+			color:black;
+			text-align: center;
+			padding: 8px 0;
+			position: absolute;
+			z-index: 1;
+			bottom: 125%;
+			left: 50%;
+			margin-left: -80px;
+		}
+		/* Popup arrow */
+		.register-form .popup .popuptext::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: black transparent transparent transparent;
+		}
+		.container{
+			  border: 0;
+			  text-align:center;
+		}
+		.divider{
+		    width:5px;
+		    height:auto;
+		    display:inline-block;
+		}

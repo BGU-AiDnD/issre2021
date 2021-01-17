@@ -1,0 +1,32 @@
+extends default
+
+
+block content
+	link(href='css/style.css' rel='stylesheet')
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js").
+	script.
+		$(document).ready(function(){
+			$('#home').addClass('active');
+		});
+	div
+		p.firstP Welcome to BGU repository mining, Here you can examine and download datasets that
+		p can be used in machine learning to develop bug prediction models.
+		p.firstP You can submit a request for a new project to be analyze and uploaded to the site but
+		p first you must be logged-in, registration is free.
+		p.firstP
+		p.firstP
+	if userID !== undefined
+		div.requestForm
+			h1 Request project
+			form(action="request/project" method="POST")
+				if message && message.length
+					error #{message}
+				input(type="text" id="github_user_name" name="gitHub_user_name" placeholder="GitHub User" required)
+				input(type="text" id="github_repo" name="github_repo" placeholder="GitHub Repository" required)
+				input(type="text" id="jira_product" name="jira_product" placeholder="Jira product" required)
+				input(type="text" id="jiraURL" name="jira_url" placeholder="Jira url" required)
+				div.container(style="")
+					input(type="submit")
+	else
+		block login
+		block register

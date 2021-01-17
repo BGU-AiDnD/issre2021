@@ -1,0 +1,86 @@
+extends baseProject.pug
+
+block page
+    div.WrapperSelection
+        div.tiitle
+            h4 Feature Selection
+            p
+                | Please select the feature group you would like to extract
+                br
+                | on selection, a list of features will be shown indicating
+                br
+                | the features in the chosen group.
+            div.features-group
+            div.feature-group-wrapper.border
+                b Select features group
+                div.feature-box
+                    each value, group in features
+                        div(class='checkboxGroup')
+                            label(class='featureGroup') #{group}
+                                input(class='featureBox' type='checkbox' value=group)
+                    //- select(class='mdb-select md-form' id='featureGroup-select')
+                    //-     option(disabled selected value)
+                    //-     each value, group in features
+                    //-         option #{group}
+                    div.features
+                        ul(class='features-list')
+                    div.buttons
+                        a(href='project/projects')
+                            button(class='btn btn-primary') Back
+                        button(id='downloadBtn' class='btn btn-danger') Download
+
+
+    script.
+        function str2bytes (str) {
+            let bytes = new Uint8Array(str.length);
+            for (let i=0; i<str.length; i++) {
+                bytes[i] = str.charCodeAt(i);
+            }
+            return bytes;
+        }
+        $(document).ready(function() {
+            $('#downloadBtn').on('click', ()=>{
+                let checked = $(".featureBox").filter(function() {
+                    return this["checked"] == true;
+                });
+                let selected = [];
+                checked.each(function(){
+                    selected.push(this.value);
+                });
+                let versions = JSON.parse(sessionStorage.getItem('versions'))
+                let projectName = sessionStorage.getItem('projectName')
+                if(versions.length > 0){
+                    if(projectName != ''){
+                        let saveData = $.ajax({
+                                type: 'POST',
+                                url: "controllers/zipFeatures",
+                                data: {versions: versions, project_name: projectName,feature_groups: selected},
+                                success: function(resultData) {
+                                    let blob = new Blob([str2bytes(resultData)],{type: "application/zip"});
+                                    saveAs(blob,projectName+".zip");
+                                },
+                                error: function(request, status, error){
+                                    alert("Error: Details about the specific versions are not available");
+                                }
+                        });
+                    }else{
+                        alert('please go back and choose a project!')
+                    }
+                }else{
+                    alert('please go back and choose a versions!')
+                }
+            })
+            $("#featureGroup-select").change(function() {
+                let element = $(this)
+                let list = $('.features-list')
+                list.empty()
+                let features = !{JSON.stringify(features)}
+                features[element.val()].forEach((element) => {
+                    list.append('<li>'+element+'</li>')
+                })
+                sessionStorage.setItem('feature-group',element.val())
+            });
+            if(sessionStorage.getItem('feature-group') != null){
+                $('#featureGroup-select').val(sessionStorage.getItem('feature-group')).trigger('change')
+            }
+        });
