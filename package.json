@@ -1,13 +1,13 @@
 {
   "name": "website",
   "version": "0.1.0",
-  "description": "Sharing site for BGU",
+  "description": "Sharing site for ",
   "main": "server.js",
   "scripts": {
     "start": "npx nodemon server.js"
   },
-  "author": "Amit Sultan",
-  "license": "BGU",
+  "author": "",
+  "license": "",
   "dependencies": {
     "@types/express-session": "^1.17.0",
     "axios": "^0.19.2",
