@@ -1,4 +1,4 @@
-# msr21
+# issre2021
 
 js website for viewing and collection beirut dataset
 
