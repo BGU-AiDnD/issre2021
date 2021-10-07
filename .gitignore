@@ -6,3 +6,4 @@ selfsigned.crt
 selfsigned.key
 .env
 .env
+node_modules/
