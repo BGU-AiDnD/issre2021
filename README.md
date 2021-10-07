@@ -1,43 +1,19 @@
-# issre2021
+![Screenshot](https://res.cloudinary.com/turnup/image/upload/v1526512881/homepage-cards.png)
 
-js website for viewing and collection beirut dataset
+# First Node Website Tutorial Starter Files
 
-steps to install ( checked on windows):
+These are the starter files to accompany the tutorial for building a simple Node.js website with Express and Pug.
 
-1) install mysql:
-  database "BugMining"
-  USER  "GithubExampleUser"
-  password "GithubExamplePassword"
-  
-  (can be changed according to .env)
+You can [access the tutorial here](https://freshman.tech/learn-node).
 
-2) install nodejs ( latests version)
+[Live demo](https://freshman-node.herokuapp.com/)
 
-3) install python 3.7 with following packages:
-  
-      termcolor 
-      openpyxl  
-      pathlib
-      python-bugzilla
-      pyparsing
-      jira
-      gitpython
-      github3.py
-      javalang
-      pandas
-      junitparser
-      click
-      tqdm
-      jupyter
-      scikit-learn
-      plotnine
-      imblearn
-      beautifulsoup4
-      tabulate
-      pytest
-      pytest_steps
+## Instructions
+1. Clone repo
+2. Run `npm install`
 
-4) install java 1.8
+## Getting Help
 
-5) run site using:
-npm start
+Need some help? Leave a comment on the tutorial — this repo is meant as a place to grab the starter files and isn't a support channel.
+
+

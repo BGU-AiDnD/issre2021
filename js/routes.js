@@ -1,3 +1,5 @@
+var express = require('express')
+var router = express.Router()
 const fs = require('fs');
 const project_dir = 'python/repository_mining/repository_data/apache_versions';
 const featureGroup_dir = 'python/repository_mining/repository_data/dataname.json';
@@ -6,7 +8,7 @@ const registerController = require('./controllers/register-controller');
 const pythonRequestController = require('./controllers/send-python-request');
 const exportFiles = require('./controllers/exportFIles');
 
-module.exports = (app) => {
+module.exports = (router) => {
 async function getProjects(callback) {
     fs.readdir(project_dir, function (err, files) {
         if (err) {
@@ -51,7 +53,7 @@ const redirectHome = (req, res, next) => {
         next();
 }
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     const { userID } = req.session;
     if (!req.session.userID){
         res.redirect('login');
@@ -64,11 +66,11 @@ app.get('/', (req, res) => {
     }
 });
 // app.get('/project', redirectLogin, function (req, res, next) {
-app.get('/project', redirectLogin, function (req, res, next) {
+    router.get('/project', redirectLogin, function (req, res, next) {
     res.redirect('project/projects')
 });
 
-app.get('/project/features', function (req, res, next){
+router.get('/project/features', function (req, res, next){
     const { userID } = req.session;
     featurePromise.then((data) => {
         const features = data
@@ -83,7 +85,7 @@ app.get('/project/features', function (req, res, next){
         console.log('error') // should redirect to error page
     })
 })
-app.get("/project/projects", function (req, res, next) {
+router.get("/project/projects", function (req, res, next) {
     let projects = undefined;
     getProjects(async function (err, result) {
         projects = result;
@@ -104,14 +106,14 @@ app.get("/project/projects", function (req, res, next) {
     });  
 });
 
-app.get('/login', redirectHome, function (req, res, next) {
+router.get('/login', redirectHome, function (req, res, next) {
     res.render('login', {
         title: "loginpage",
         message: req.flash('message')
     });
 });
 
-app.get('/register', redirectHome, (req, res) => {
+router.get('/register', redirectHome, (req, res) => {
     res.render('register', {
         title: "registerpage",
         message: req.flash('message')
@@ -119,12 +121,12 @@ app.get('/register', redirectHome, (req, res) => {
 });
 
 
-app.get('/welcome', redirectHome, (req, res) => {
+router.get('/welcome', redirectHome, (req, res) => {
     res.render('animated', {
     });
 });
 
-app.get('/about', redirectHome, function (req, res, next) {
+router.get('/about', redirectHome, function (req, res, next) {
     res.render('about', {
         title: "aboutpage",
         message: req.flash('message')
@@ -132,7 +134,7 @@ app.get('/about', redirectHome, function (req, res, next) {
 });
 
 
-app.get('/beirut', redirectHome, function (req, res, next) {
+router.get('/beirut', redirectHome, function (req, res, next) {
     res.render('beirut', {
         title: "beirutpage",
         message: req.flash('message')
@@ -140,7 +142,7 @@ app.get('/beirut', redirectHome, function (req, res, next) {
 });
 
 
-app.post('/request/project', redirectLogin, (req, res)=>{
+router.post('/request/project', redirectLogin, (req, res)=>{
     console.log(req.body)
     pythonRequestController.callPyRequest(req.session.userID, req.body.gitHub, req.body.jira).then((result)=>{
         console.log('done')
@@ -155,19 +157,21 @@ app.post('/request/project', redirectLogin, (req, res)=>{
 
 
 
-app.use((req, res, next) => {
+    router.use((req, res, next) => {
     const redirector = res.redirect
     res.redirect = function (url) {
       url = '/njsw08' + url
+      console.log(`redirect ${url}`);
       redirector.call(this, url)
     }
     next()
   })
-  app.post('/controllers/register-controller', registerController.register);
-app.post('/controllers/authenticate-controller', authenticateController.authenticate);
-app.post('/controllers/zipProjects', exportFiles.zipProjects);
-app.post('/controllers/zipFeatures', exportFiles.zipFeatures);
+  router.post('/controllers/register-controller', registerController.register);
+  router.post('/controllers/authenticate-controller', authenticateController.authenticate);
+  router.post('/controllers/zipProjects', exportFiles.zipProjects);
+  router.post('/controllers/zipFeatures', exportFiles.zipFeatures);
 // app.post('/api/register', registerController.register);
 // app.post('/api/authenticate', authenticateController.authenticate);
-return app; 
+return router; 
 };
+

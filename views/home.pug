@@ -6,7 +6,7 @@ block content
 	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js").
 	script.
 		$(document).ready(function(){
-			$('#home').addClass('active');
+			$('#Request').addClass('active');
 		});
 	div
 		p.firstP Welcome to BGU repository mining, Here you can examine and download datasets that
@@ -24,7 +24,7 @@ block content
 				input(type="text" id="github_user_name" name="gitHub_user_name" placeholder="GitHub User" required)
 				input(type="text" id="github_repo" name="github_repo" placeholder="GitHub Repository" required)
 				input(type="text" id="jira_product" name="jira_product" placeholder="Jira product" required)
-				input(type="text" id="jiraURL" name="jira_url" placeholder="Jira url" required)
+				input(type="text" id="jiraURL" name="jira_url" placeholder="Jira URLs" required)
 				div.container(style="")
 					input(type="submit")
 	else

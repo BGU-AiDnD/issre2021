@@ -1,0 +1,7 @@
+
+.env
+.env
+*.pem
+selfsigned.crt
+selfsigned.key
+.env

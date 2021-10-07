@@ -1,5 +1,11 @@
-﻿const express = require('express');
-const app = express();
+﻿var fs = require('fs');
+var https = require('https');
+var privateKey  = fs.readFileSync('selfsigned.key');
+var certificate = fs.readFileSync('selfsigned.crt');
+
+var credentials = {key: privateKey, cert: certificate};
+const express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 const session = require('express-session');
 var flash = require('connect-flash');
@@ -8,8 +14,8 @@ var request = require('request');
 
 const TWO_HOURS = 1000 * 720;
 const {
-    PORT = 8108,
-    NODE_ENV = 'development',
+    PORT = 443,
+    NODE_ENV = 'production',
     SESS_LIFETIME = TWO_HOURS,
     SESS_NAME = 'sid',
     SESS_SECRET = 'Miner@!soDc$1'
@@ -36,9 +42,16 @@ app.use(session({
         secure: IN_PROD
     }
 }));
-const router = express.Router()
-const routes = require('./js/routes')(router, {});
-app.use('//', routes)
-const server = app.listen(PORT, () => {
-    console.log(`Express running → PORT ${server.address().port}`);
-});
+//const router = express.Router()
+//const routes = require('./js/routes')(router, {});
+const routes = require('./js/routes');
+app.use('/', routes)
+// const server = app.listen(PORT, () => {
+//     console.log(`Express running → PORT ${server.address().port}`);
+// });
+
+
+var httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(443);
+
