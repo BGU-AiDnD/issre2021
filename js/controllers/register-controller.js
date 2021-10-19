@@ -22,7 +22,7 @@ module.exports.register=function(req,res) {
     }
     var passwordReg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
     if(!passwordReg.test(req.body.password)){
-        errorDetected = 'password must contain atleast one number,letter and contain between 8-16 characters';
+        errorDetected = 'password must contain at least one number,letter and contain between 8-16 characters';
     }
     if(errorDetected === ""){
         connection.registerUser(users).then((result)=>{

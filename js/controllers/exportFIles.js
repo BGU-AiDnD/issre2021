@@ -1,7 +1,7 @@
 var JSZip = require("jszip");
 const fs = require('fs');
-const project_dir = "python/repository_mining/repository_data/apache_versions";
-const features_dir = "python/repository_mining/repository_data/metrics";
+const project_dir = "C:/repository_mining/repository_data/apache_versions";
+const features_dir = "C:/repository_mining/repository_data/metrics";
 var FileSaver = require('file-saver');
 
 

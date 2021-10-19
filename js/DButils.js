@@ -84,7 +84,6 @@ function getUserID(username) {
 
 function addRequest(user, projectName) {
     getUserID(user).then((result)=>{
-        console.log("hereee"+result)
             let requestDetails = {
               project_requested: projectName,
               date: new Date(),

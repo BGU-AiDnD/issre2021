@@ -2,21 +2,21 @@ const emails = require('./email-controller.js');
 var connection = require('./../DButils');
 const { resolve } = require('bluebird');
 
-module.exports.callPyRequest = function (userID, github, jira) {
+module.exports.callPyRequest = function (userID, gitHub_user_name, github_repo, jira_product, jira_url) {
         return new Promise ((resolve, reject) => {
         let { PythonShell } = require('python-shell');
         let options = {
             mode: 'text',
-            pythonPath: 'C:/Python27/python.exe',
-            pythonOptions: ['-u'], // get print results in real-time
-            scriptPath: 'C:/bugMiningSite/python/repository_mining',
-            args: [github, jira]
+            pythonPath: 'C:/Users/User/AppData/Local/Programs/Python/Python37/python.exe',
+            pythonOptions: [], // get print results in real-time
+            scriptPath: 'C:/repository_mining',
+            args: ['-u', gitHub_user_name, '-g', github_repo, '-j', jira_product, '-jl', jira_url, '-q', '-s', '0', '-n', '5']
         };
         if (userID == undefined){
             reject('user not logged-in')
         } 
-        connection.addRequest(userID, jira);
-        PythonShell.run('apache_repos.py', options, function (err, results) {
+        connection.addRequest(userID, jira_product);
+        PythonShell.run('main.py', options, function (err, results) {
             if (err) {
                 reject(err)
             }
@@ -34,7 +34,7 @@ module.exports.callPyRequest = function (userID, github, jira) {
                     user = [{
                         name: userID,
                         email: result,
-                        projectName: github,
+                        projectName: jira_product,
                     }];
                     emails.sendTo(user);
                 },

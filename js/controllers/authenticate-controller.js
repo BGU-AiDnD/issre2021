@@ -6,7 +6,7 @@ module.exports.authenticate = async function (req, res) {
     connection.authUser(username, password).then((result)=>{
         if (result) {
             req.session.userID = username;
-            res.redirect('');
+            res.redirect('/beirut');
         } else {
             req.flash('message', 'Wrong username or password');
             res.redirect('/login');

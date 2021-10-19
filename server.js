@@ -26,7 +26,7 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public/'));
 app.use('/controllers', express.static(__dirname + '/public'));
 app.use(express.static('public'));
-app.use(express.static('python/repository_mining/repository_data'));
+app.use(express.static('C:/repository_mining/repository_data'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(flash());
@@ -42,10 +42,15 @@ app.use(session({
         secure: IN_PROD
     }
 }));
+
+const router = express.Router()
+const routes = require('./js/routes')(router, {});
+app.use('', routes)
+
 //const router = express.Router()
 //const routes = require('./js/routes')(router, {});
-const routes = require('./js/routes');
-app.use('/', routes)
+// const routes = require('./js/routes');
+// app.use('//', routes)
 // const server = app.listen(PORT, () => {
 //     console.log(`Express running → PORT ${server.address().port}`);
 // });

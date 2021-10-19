@@ -1,8 +1,8 @@
-var express = require('express')
-var router = express.Router()
+// var express = require('express')
+// var router = express.Router()
 const fs = require('fs');
-const project_dir = 'python/repository_mining/repository_data/apache_versions';
-const featureGroup_dir = 'python/repository_mining/repository_data/dataname.json';
+const project_dir = 'C:/repository_mining/repository_data/apache_versions';
+const featureGroup_dir = 'C:/repository_mining/repository_data/dataname.json';
 const authenticateController = require('./controllers/authenticate-controller');
 const registerController = require('./controllers/register-controller');
 const pythonRequestController = require('./controllers/send-python-request');
@@ -57,6 +57,7 @@ router.get('/', (req, res) => {
     const { userID } = req.session;
     if (!req.session.userID){
         res.redirect('login');
+        console.log('goto login');
     }else{
         res.render('home', {
             userID,
@@ -66,7 +67,7 @@ router.get('/', (req, res) => {
     }
 });
 // app.get('/project', redirectLogin, function (req, res, next) {
-    router.get('/project', redirectLogin, function (req, res, next) {
+router.get('/project', redirectLogin, function (req, res, next) {
     res.redirect('project/projects')
 });
 
@@ -144,7 +145,7 @@ router.get('/beirut', redirectHome, function (req, res, next) {
 
 router.post('/request/project', redirectLogin, (req, res)=>{
     console.log(req.body)
-    pythonRequestController.callPyRequest(req.session.userID, req.body.gitHub, req.body.jira).then((result)=>{
+    pythonRequestController.callPyRequest(req.session.userID, req.body.gitHub_user_name, req.body.github_repo, req.body.jira_product, req.body.jira_url).then((result)=>{
         console.log('done')
     }).catch((error)=>{
         console.log(error)
@@ -157,19 +158,19 @@ router.post('/request/project', redirectLogin, (req, res)=>{
 
 
 
-    router.use((req, res, next) => {
+router.use((req, res, next) => {
     const redirector = res.redirect
     res.redirect = function (url) {
-      url = '/njsw08' + url
+      // url = 'njsw08' + url
       console.log(`redirect ${url}`);
       redirector.call(this, url)
     }
     next()
   })
-  router.post('/controllers/register-controller', registerController.register);
-  router.post('/controllers/authenticate-controller', authenticateController.authenticate);
-  router.post('/controllers/zipProjects', exportFiles.zipProjects);
-  router.post('/controllers/zipFeatures', exportFiles.zipFeatures);
+router.post('/controllers/register-controller', registerController.register);
+router.post('/controllers/authenticate-controller', authenticateController.authenticate);
+router.post('/controllers/zipProjects', exportFiles.zipProjects);
+router.post('/controllers/zipFeatures', exportFiles.zipFeatures);
 // app.post('/api/register', registerController.register);
 // app.post('/api/authenticate', authenticateController.authenticate);
 return router; 

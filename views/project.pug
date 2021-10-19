@@ -8,7 +8,7 @@ block page
 			if projects != undefined
 				div(class="form-check")
 					each project in projects
-						//input(class="form-check-input" type="checkbox" value=project)
+						input(class="form-check-input" type="checkbox" value=project)
 						label(class="form-check-label")=project
 			if projects == undefined
 				span No projects were found!
@@ -122,5 +122,60 @@ block page
 				}
 			}else{
 				alert('please choose a project!')
+			}
+		});
+
+	script.
+		function str2bytes (str) {
+			let bytes = new Uint8Array(str.length);
+			for (let i=0; i<str.length; i++) {
+				bytes[i] = str.charCodeAt(i);
+			}
+			return bytes;
+		}
+		$(document).ready(function() {
+			$('#downloadBtn').on('click', ()=>{
+				let checked = $(".feature-box").filter(function() {
+					return this["checked"] == true;
+				});
+				let selected = [];
+				checked.each(function(){
+					selected.push(this.value);
+				});
+				let versions = JSON.parse(sessionStorage.getItem('versions'))
+				let projectName = sessionStorage.getItem('projectName')
+				if(versions.length > 0){
+					if(projectName != ''){
+						let saveData = $.ajax({
+								type: 'POST',
+								url: "controllers/zipFeatures",
+								data: {versions: versions, project_name: projectName,feature_groups: selected},
+								success: function(resultData) {
+									let blob = new Blob([str2bytes(resultData)],{type: "application/zip"});
+									saveAs(blob,projectName+".zip");
+								},
+								error: function(request, status, error){
+									alert("Error: Details about the specific versions are not available");
+								}
+						});
+					}else{
+						alert('please go back and choose a project!')
+					}
+				}else{
+					alert('please go back and choose a versions!')
+				}
+			})
+			$("#featureGroup-select").change(function() {
+				let element = $(this)
+				let list = $('.features-list')
+				list.empty()
+				let features = !{JSON.stringify(features)}
+				features[element.val()].forEach((element) => {
+					list.append('<li>'+element+'</li>')
+				})
+				sessionStorage.setItem('feature-group',element.val())
+			});
+			if(sessionStorage.getItem('feature-group') != null){
+				$('#featureGroup-select').val(sessionStorage.getItem('feature-group')).trigger('change')
 			}
 		});
