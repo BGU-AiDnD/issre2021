@@ -56,7 +56,7 @@ const redirectHome = (req, res, next) => {
 router.get('/', (req, res) => {
     const { userID } = req.session;
     if (!req.session.userID){
-        res.redirect('login');
+        res.redirect('/login');
         console.log('goto login');
     }else{
         res.render('home', {
@@ -161,7 +161,7 @@ router.post('/request/project', redirectLogin, (req, res)=>{
 router.use((req, res, next) => {
     const redirector = res.redirect
     res.redirect = function (url) {
-      // url = 'njsw08' + url
+      url = 'https://rps.ise.bgu.ac.il/njsw08' + url
       console.log(`redirect ${url}`);
       redirector.call(this, url)
     }
